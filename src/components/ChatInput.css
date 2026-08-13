@@ -390,3 +390,84 @@
   font-weight: 500;
   margin-left: 4px;
 }
+
+/* ── Voice Recording ─────────────────────────────────── */
+.mic-btn {
+  position: relative;
+  overflow: visible;
+}
+
+.mic-btn.recording {
+  color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.12);
+}
+
+.mic-btn.recording:hover:not(:disabled) {
+  background: rgba(255, 77, 77, 0.22);
+  color: #ff4d4d;
+}
+
+/* Pulsing ring around the mic button while recording */
+.recording-pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid #ff4d4d;
+  animation: mic-pulse 1.2s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes mic-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+/* Voice error banner */
+.voice-error-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 77, 77, 0.12);
+  border: 1px solid rgba(255, 77, 77, 0.35);
+  border-radius: 10px;
+  color: #ff9191;
+  font-size: 13px;
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  animation: slideUp 0.15s ease-out;
+}
+
+.voice-error-banner svg {
+  flex-shrink: 0;
+}
+
+.voice-error-banner span {
+  flex: 1;
+}
+
+.voice-error-close {
+  background: none;
+  border: none;
+  color: #ff9191;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 0 2px;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+
+.voice-error-close:hover {
+  opacity: 1;
+}

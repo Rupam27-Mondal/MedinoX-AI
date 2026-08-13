@@ -20,7 +20,7 @@ export default function WelcomeScreen({ onSuggestion }) {
               className="suggestion-card"
               onClick={() => onSuggestion(s.prompt)}
             >
-              <span className="suggestion-icon">{s.icon}</span>
+              {/* <span className="suggestion-icon">{s.icon}</span> */}
               <div>
                 <p className="suggestion-title">{s.title}</p>
                 <p className="suggestion-desc">{s.prompt}</p>

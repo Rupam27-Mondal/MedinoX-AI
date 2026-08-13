@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from 'react';
-import { ArrowUp, Square, Paperclip, Mic, Globe, Image, FileText, File, Music, Video, ChevronDown, Languages } from 'lucide-react';
+import { useState, useRef, useEffect, useCallback } from 'react';
+import { ArrowUp, Square, Paperclip, Mic, MicOff, Globe, Image, FileText, File, Music, Video, ChevronDown, Languages } from 'lucide-react';
 import './ChatInput.css';
 
 export default function ChatInput({ onSend, isLoading, onStop, selectedLanguage = 'en', onLanguageChange }) {
@@ -7,9 +7,13 @@ export default function ChatInput({ onSend, isLoading, onStop, selectedLanguage 
   const [showAttachmentDropdown, setShowAttachmentDropdown] = useState(false);
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const [attachedFiles, setAttachedFiles] = useState([]);
+  const [isRecording, setIsRecording] = useState(false);
+  const [voiceError, setVoiceError] = useState('');
   const textareaRef = useRef(null);
   const attachmentDropdownRef = useRef(null);
   const languageDropdownRef = useRef(null);
+  const recognitionRef = useRef(null);
+  const interimValueRef = useRef('');
   const fileInputRefs = useRef({
     image: null,
     document: null,
@@ -49,6 +53,112 @@ export default function ChatInput({ onSend, isLoading, onStop, selectedLanguage 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  // Map app language ids to BCP-47 codes for SpeechRecognition
+  const langToBCP47 = {
+    bn: 'bn-BD',
+    hi: 'hi-IN',
+    mr: 'mr-IN',
+    or: 'or-IN',
+    en: 'en-US',
+  };
+
+  const stopRecording = useCallback(() => {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
+      recognitionRef.current = null;
+    }
+    setIsRecording(false);
+    interimValueRef.current = '';
+  }, []);
+
+  const startRecording = useCallback(() => {
+    setVoiceError('');
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+      setVoiceError('Voice input is not supported in this browser. Try Chrome or Edge.');
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = langToBCP47[selectedLanguage] || 'en-US';
+    recognition.interimResults = true;
+    recognition.continuous = true;
+    recognitionRef.current = recognition;
+
+    // Snapshot of text already in box before recording starts
+    const baseText = value;
+
+    recognition.onstart = () => {
+      setIsRecording(true);
+    };
+
+    recognition.onresult = (event) => {
+      let interim = '';
+      let final = '';
+
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          final += transcript + ' ';
+        } else {
+          interim += transcript;
+        }
+      }
+
+      // Append finalized text to base; show interim as a live preview
+      if (final) {
+        interimValueRef.current = (interimValueRef.current + final).trimStart();
+      }
+      const display =
+        (baseText ? baseText + ' ' : '') +
+        interimValueRef.current +
+        interim;
+      setValue(display.trimStart());
+    };
+
+    recognition.onerror = (event) => {
+      if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
+        setVoiceError('Microphone access denied. Allow mic permission and try again.');
+      } else if (event.error !== 'aborted') {
+        setVoiceError('Voice recognition error. Please try again.');
+      }
+      stopRecording();
+    };
+
+    recognition.onend = () => {
+      setIsRecording(false);
+      recognitionRef.current = null;
+      interimValueRef.current = '';
+    };
+
+    recognition.start();
+  }, [selectedLanguage, value, stopRecording]);
+
+  const handleVoiceToggle = () => {
+    if (isRecording) {
+      stopRecording();
+    } else {
+      startRecording();
+    }
+  };
+
+  // Stop recording if language changes mid-session
+  useEffect(() => {
+    if (isRecording) stopRecording();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedLanguage]);
+
+  // Clean up on unmount
+  useEffect(() => {
+    return () => {
+      if (recognitionRef.current) {
+        recognitionRef.current.abort();
+      }
     };
   }, []);
 
@@ -101,6 +211,9 @@ export default function ChatInput({ onSend, isLoading, onStop, selectedLanguage 
   const handleSend = () => {
     const trimmed = value.trim();
     if (!trimmed || isLoading) return;
+
+    // Stop recording before sending
+    if (isRecording) stopRecording();
     
     // Include attached files in the message
     const messageData = {
@@ -218,6 +331,15 @@ export default function ChatInput({ onSend, isLoading, onStop, selectedLanguage 
           </div>
         )}
 
+        {/* Voice error banner */}
+        {voiceError && (
+          <div className="voice-error-banner" role="alert">
+            <MicOff size={14} />
+            <span>{voiceError}</span>
+            <button className="voice-error-close" onClick={() => setVoiceError('')} aria-label="Dismiss">×</button>
+          </div>
+        )}
+
         <div className="input-box">
           {/* Top row: textarea */}
           <textarea
@@ -332,8 +454,16 @@ export default function ChatInput({ onSend, isLoading, onStop, selectedLanguage 
                 )}
               </div>
 
-              <button className="tool-btn" title="Voice input" disabled={isLoading}>
-                <Mic size={16} />
+              <button
+                className={`tool-btn mic-btn ${isRecording ? 'recording' : ''}`}
+                title={isRecording ? 'Stop recording' : 'Voice input'}
+                disabled={isLoading}
+                onClick={handleVoiceToggle}
+                aria-label={isRecording ? 'Stop voice recording' : 'Start voice recording'}
+                aria-pressed={isRecording}
+              >
+                {isRecording ? <MicOff size={16} /> : <Mic size={16} />}
+                {isRecording && <span className="recording-pulse" aria-hidden="true" />}
               </button>
             </div>
 
