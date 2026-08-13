@@ -142,3 +142,65 @@
   background: #2a2a2a;
   color: #ececec;
 }
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid #3a3a3a;
+  background: transparent;
+  color: #8e8ea0;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.2s;
+}
+
+.theme-toggle-btn:hover {
+  background: #2a2a2a;
+  border-color: #555;
+  color: #ececec;
+  transform: rotate(15deg);
+}
+
+.theme-toggle-btn:active {
+  transform: rotate(30deg) scale(0.92);
+}
+
+/* Light mode overrides */
+body.theme-light .chat-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+body.theme-light .theme-toggle-btn {
+  border-color: #d1d5db;
+  color: #6b7280;
+}
+
+body.theme-light .theme-toggle-btn:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+  color: #000000;
+}
+
+body.theme-light .model-dropdown {
+  background: #ffffff;
+  border-color: #e5e7eb;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+body.theme-light .model-option {
+  color: #000000;
+}
+
+body.theme-light .model-option:hover {
+  background: #f3f4f6;
+}
+
+body.theme-light .model-selector:hover,
+body.theme-light .model-selector:focus {
+  background: #f3f4f6;
+}

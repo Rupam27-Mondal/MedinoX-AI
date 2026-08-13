@@ -4,7 +4,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -13,6 +12,23 @@
   animation: fadeIn 0.2s ease-out;
   padding: 20px;
   box-sizing: border-box;
+}
+
+/* Dark Mode */
+body.theme-dark .settings-overlay,
+body.theme-auto .settings-overlay {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Light Mode */
+body.theme-light .settings-overlay {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+@media (prefers-color-scheme: light) {
+  body.theme-auto .settings-overlay {
+    background: rgba(0, 0, 0, 0.4);
+  }
 }
 
 @keyframes fadeIn {
@@ -25,8 +41,6 @@
 }
 
 .settings-modal {
-  background: #1a1a1a;
-  border: 1px solid #2a2a2a;
   border-radius: 16px;
   width: 100%;
   max-width: 800px;
@@ -36,6 +50,28 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
   animation: slideUp 0.3s ease-out;
   overflow: hidden;
+}
+
+/* Dark Mode */
+body.theme-dark .settings-modal,
+body.theme-auto .settings-modal {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+}
+
+/* Light Mode */
+body.theme-light .settings-modal {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+@media (prefers-color-scheme: light) {
+  body.theme-auto .settings-modal {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
 }
 
 @keyframes slideUp {
@@ -55,27 +91,74 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px 24px;
-  border-bottom: 1px solid #2a2a2a;
   flex-shrink: 0;
 }
 
+/* Dark Mode */
+body.theme-dark .settings-header,
+body.theme-auto .settings-header {
+  border-bottom: 1px solid #2a2a2a;
+}
+
+/* Light Mode */
+body.theme-light .settings-header {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+@media (prefers-color-scheme: light) {
+  body.theme-auto .settings-header {
+    border-bottom: 1px solid #e5e7eb;
+  }
+}
+
 .header-content h2 {
-  color: #ececec;
   font-size: 20px;
   font-weight: 600;
   margin: 0 0 4px 0;
 }
 
+/* Dark Mode */
+body.theme-dark .header-content h2,
+body.theme-auto .header-content h2 {
+  color: #ececec;
+}
+
+/* Light Mode */
+body.theme-light .header-content h2 {
+  color: #000000;
+}
+
+@media (prefers-color-scheme: light) {
+  body.theme-auto .header-content h2 {
+    color: #000000;
+  }
+}
+
 .header-content p {
-  color: #8e8ea0;
   font-size: 14px;
   margin: 0;
+}
+
+/* Dark Mode */
+body.theme-dark .header-content p,
+body.theme-auto .header-content p {
+  color: #8e8ea0;
+}
+
+/* Light Mode */
+body.theme-light .header-content p {
+  color: #6b7280;
+}
+
+@media (prefers-color-scheme: light) {
+  body.theme-auto .header-content p {
+    color: #6b7280;
+  }
 }
 
 .close-btn {
   background: transparent;
   border: none;
-  color: #8e8ea0;
   cursor: pointer;
   padding: 8px;
   border-radius: 8px;
@@ -85,9 +168,37 @@
   transition: background 0.15s, color 0.15s;
 }
 
-.close-btn:hover {
+/* Dark Mode */
+body.theme-dark .close-btn,
+body.theme-auto .close-btn {
+  color: #8e8ea0;
+}
+
+body.theme-dark .close-btn:hover,
+body.theme-auto .close-btn:hover {
   background: #2a2a2a;
   color: #ececec;
+}
+
+/* Light Mode */
+body.theme-light .close-btn {
+  color: #6b7280;
+}
+
+body.theme-light .close-btn:hover {
+  background: #f3f4f6;
+  color: #000000;
+}
+
+@media (prefers-color-scheme: light) {
+  body.theme-auto .close-btn {
+    color: #6b7280;
+  }
+  
+  body.theme-auto .close-btn:hover {
+    background: #f3f4f6;
+    color: #000000;
+  }
 }
 
 /* Content */
@@ -101,17 +212,34 @@
 .settings-tabs {
   display: flex;
   flex-direction: column;
-  background: #1e1e1e;
-  border-right: 1px solid #2a2a2a;
   padding: 16px 0;
   min-width: 200px;
   flex-shrink: 0;
 }
 
+/* Dark Mode */
+body.theme-dark .settings-tabs,
+body.theme-auto .settings-tabs {
+  background: #1e1e1e;
+  border-right: 1px solid #2a2a2a;
+}
+
+/* Light Mode */
+body.theme-light .settings-tabs {
+  background: #f9fafb;
+  border-right: 1px solid #e5e7eb;
+}
+
+@media (prefers-color-scheme: light) {
+  body.theme-auto .settings-tabs {
+    background: #f9fafb;
+    border-right: 1px solid #e5e7eb;
+  }
+}
+
 .tab-btn {
   background: transparent;
   border: none;
-  color: #8e8ea0;
   cursor: pointer;
   padding: 12px 20px;
   display: flex;
@@ -125,18 +253,66 @@
   border-radius: 8px;
 }
 
-.tab-btn:hover {
+/* Dark Mode */
+body.theme-dark .tab-btn,
+body.theme-auto .tab-btn {
+  color: #8e8ea0;
+}
+
+body.theme-dark .tab-btn:hover,
+body.theme-auto .tab-btn:hover {
   background: #2a2a2a;
   color: #ececec;
 }
 
-.tab-btn.active {
+body.theme-dark .tab-btn.active,
+body.theme-auto .tab-btn.active {
   background: #19c37d;
   color: #fff;
 }
 
-.tab-btn.active:hover {
+body.theme-dark .tab-btn.active:hover,
+body.theme-auto .tab-btn.active:hover {
   background: #17b370;
+}
+
+/* Light Mode */
+body.theme-light .tab-btn {
+  color: #6b7280;
+}
+
+body.theme-light .tab-btn:hover {
+  background: #f3f4f6;
+  color: #000000;
+}
+
+body.theme-light .tab-btn.active {
+  background: #3b82f6;
+  color: #fff;
+}
+
+body.theme-light .tab-btn.active:hover {
+  background: #2563eb;
+}
+
+@media (prefers-color-scheme: light) {
+  body.theme-auto .tab-btn {
+    color: #6b7280;
+  }
+  
+  body.theme-auto .tab-btn:hover {
+    background: #f3f4f6;
+    color: #000000;
+  }
+  
+  body.theme-auto .tab-btn.active {
+    background: #3b82f6;
+    color: #fff;
+  }
+  
+  body.theme-auto .tab-btn.active:hover {
+    background: #2563eb;
+  }
 }
 
 /* Panel */
@@ -147,10 +323,26 @@
 }
 
 .panel-content h3 {
-  color: #ececec;
   font-size: 18px;
   font-weight: 600;
   margin: 0 0 24px 0;
+}
+
+/* Dark Mode */
+body.theme-dark .panel-content h3,
+body.theme-auto .panel-content h3 {
+  color: #ececec;
+}
+
+/* Light Mode */
+body.theme-light .panel-content h3 {
+  color: #000000;
+}
+
+@media (prefers-color-scheme: light) {
+  body.theme-auto .panel-content h3 {
+    color: #000000;
+  }
 }
 
 /* Settings Groups */
@@ -160,39 +352,116 @@
 
 .setting-group label {
   display: block;
-  color: #ececec;
   font-size: 14px;
   font-weight: 500;
   margin-bottom: 4px;
 }
 
+/* Dark Mode */
+body.theme-dark .setting-group label,
+body.theme-auto .setting-group label {
+  color: #ececec;
+}
+
+/* Light Mode */
+body.theme-light .setting-group label {
+  color: #000000;
+}
+
+@media (prefers-color-scheme: light) {
+  body.theme-auto .setting-group label {
+    color: #000000;
+  }
+}
+
 .setting-description {
-  color: #8e8ea0;
   font-size: 13px;
   margin: 0 0 8px 0;
   line-height: 1.4;
+}
+
+/* Dark Mode */
+body.theme-dark .setting-description,
+body.theme-auto .setting-description {
+  color: #8e8ea0;
+}
+
+/* Light Mode */
+body.theme-light .setting-description {
+  color: #6b7280;
+}
+
+@media (prefers-color-scheme: light) {
+  body.theme-auto .setting-description {
+    color: #6b7280;
+  }
 }
 
 .setting-input,
 .setting-select,
 .setting-textarea {
   width: 100%;
-  background: #2a2a2a;
-  border: 1px solid #3a3a3a;
   border-radius: 8px;
-  color: #ececec;
   font-size: 14px;
   padding: 10px 12px;
   box-sizing: border-box;
   outline: none;
-  transition: border-color 0.15s, background 0.15s;
+  transition: border-color 0.15s, background 0.15s, color 0.3s;
 }
 
-.setting-input:focus,
-.setting-select:focus,
-.setting-textarea:focus {
+/* Dark Mode */
+body.theme-dark .setting-input,
+body.theme-auto .setting-input,
+body.theme-dark .setting-select,
+body.theme-auto .setting-select,
+body.theme-dark .setting-textarea,
+body.theme-auto .setting-textarea {
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  color: #ececec;
+}
+
+body.theme-dark .setting-input:focus,
+body.theme-auto .setting-input:focus,
+body.theme-dark .setting-select:focus,
+body.theme-auto .setting-select:focus,
+body.theme-dark .setting-textarea:focus,
+body.theme-auto .setting-textarea:focus {
   border-color: #19c37d;
   background: #333;
+}
+
+/* Light Mode */
+body.theme-light .setting-input,
+body.theme-light .setting-select,
+body.theme-light .setting-textarea {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #000000;
+}
+
+body.theme-light .setting-input:focus,
+body.theme-light .setting-select:focus,
+body.theme-light .setting-textarea:focus {
+  border-color: #3b82f6;
+  background: #ffffff;
+}
+
+@media (prefers-color-scheme: light) {
+  body.theme-auto .setting-input,
+  body.theme-auto .setting-select,
+  body.theme-auto .setting-textarea {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    color: #000000;
+  }
+  
+  body.theme-auto .setting-input:focus,
+  body.theme-auto .setting-select:focus,
+  body.theme-auto .setting-textarea:focus {
+    border-color: #3b82f6;
+    background: #ffffff;
+  }
 }
 
 .setting-textarea {
@@ -209,10 +478,7 @@
 
 .theme-option {
   flex: 1;
-  background: #2a2a2a;
-  border: 1px solid #3a3a3a;
   border-radius: 8px;
-  color: #ececec;
   cursor: pointer;
   padding: 10px 12px;
   display: flex;
@@ -220,18 +486,65 @@
   justify-content: center;
   gap: 8px;
   font-size: 13px;
-  transition: background 0.15s, border-color 0.15s;
+  transition: background 0.15s, border-color 0.15s, color 0.3s;
 }
 
-.theme-option:hover {
+/* Dark Mode */
+body.theme-dark .theme-option,
+body.theme-auto .theme-option {
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  color: #ececec;
+}
+
+body.theme-dark .theme-option:hover,
+body.theme-auto .theme-option:hover {
   background: #333;
   border-color: #4a4a4a;
 }
 
-.theme-option.active {
+body.theme-dark .theme-option.active,
+body.theme-auto .theme-option.active {
   background: #19c37d;
   border-color: #19c37d;
   color: #fff;
+}
+
+/* Light Mode */
+body.theme-light .theme-option {
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  color: #000000;
+}
+
+body.theme-light .theme-option:hover {
+  background: #e5e7eb;
+  border-color: #9ca3af;
+}
+
+body.theme-light .theme-option.active {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: #fff;
+}
+
+@media (prefers-color-scheme: light) {
+  body.theme-auto .theme-option {
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    color: #000000;
+  }
+  
+  body.theme-auto .theme-option:hover {
+    background: #e5e7eb;
+    border-color: #9ca3af;
+  }
+  
+  body.theme-auto .theme-option.active {
+    background: #3b82f6;
+    border-color: #3b82f6;
+    color: #fff;
+  }
 }
 
 /* Checkbox Settings */

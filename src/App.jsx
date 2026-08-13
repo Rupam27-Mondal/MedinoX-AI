@@ -8,6 +8,7 @@ import WelcomeScreen from './components/WelcomeScreen';
 import LoginScreen from './components/LoginScreen';
 import SettingsModal from './components/SettingsModal';
 import './App.css';
+import './components/Theme.css';
 
 // Simulated AI response — replace with your real API call
 async function fetchAIResponse(messages, signal) {
@@ -56,16 +57,21 @@ export default function App() {
   const [showLoginScreen, setShowLoginScreen] = useState(false);
   const [isAccountSwitch, setIsAccountSwitch] = useState(false);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState(() => {
+    // Load theme from localStorage or default to 'dark'
+    const savedTheme = localStorage.getItem('chatbot-theme');
+    return savedTheme || 'dark';
+  });
   const [selectedLanguage, setSelectedLanguage] = useState('en');
   const abortRef = useRef(null);
 
   const activeChat = chats.find(c => c.id === activeChatId);
 
-  // Apply initial theme
+  // Apply theme on mount and when it changes
   useEffect(() => {
     document.body.className = `theme-${theme}`;
-  }, []);
+    localStorage.setItem('chatbot-theme', theme);
+  }, [theme]);
 
   const updateChat = useCallback((chatId, updater) => {
     setChats(prev => prev.map(c => c.id === chatId ? { ...updater(c), updatedAt: Date.now() } : c));
@@ -284,6 +290,8 @@ export default function App() {
         <Header
           selectedModel={selectedModel}
           onModelChange={setSelectedModel}
+          theme={theme}
+          onThemeChange={handleThemeChange}
         />
 
         <div className="chat-area">

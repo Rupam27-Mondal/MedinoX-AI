@@ -309,3 +309,110 @@
   background: #3a3a3a;
   color: #ececec;
 }
+
+/* ========================================
+   LIGHT MODE OVERRIDES
+   ======================================== */
+
+body.theme-light .user-bubble .user-text {
+  color: #000000;
+}
+
+body.theme-light .assistant-bubble {
+  color: #000000;
+}
+
+body.theme-light .markdown-body {
+  color: #000000;
+}
+
+body.theme-light .markdown-body p,
+body.theme-light .markdown-body li,
+body.theme-light .markdown-body td,
+body.theme-light .markdown-body blockquote {
+  color: #000000;
+}
+
+body.theme-light .markdown-body h1,
+body.theme-light .markdown-body h2,
+body.theme-light .markdown-body h3,
+body.theme-light .markdown-body h4 {
+  color: #000000;
+}
+
+body.theme-light .markdown-body blockquote {
+  border-left-color: #d1d5db;
+  color: #374151;
+}
+
+body.theme-light .markdown-body hr {
+  border-top-color: #e5e7eb;
+}
+
+body.theme-light .markdown-body th {
+  background: #f3f4f6;
+  color: #000000;
+}
+
+body.theme-light .markdown-body td {
+  border-color: #e5e7eb;
+}
+
+body.theme-light .markdown-body th {
+  border-color: #e5e7eb;
+}
+
+body.theme-light .markdown-body tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+body.theme-light .inline-code {
+  background: #f3f4f6;
+  color: #d6336c;
+}
+
+body.theme-light .attachment-name {
+  color: #000000;
+}
+
+body.theme-light .attachment-display {
+  background: #f3f4f6;
+  border-color: #e5e7eb;
+}
+
+body.theme-light .attachment-file-icon {
+  background: #e5e7eb;
+  color: #6b7280;
+}
+
+body.theme-light .action-btn,
+body.theme-light .copy-btn {
+  color: #6b7280;
+}
+
+body.theme-light .action-btn:hover,
+body.theme-light .copy-btn:hover {
+  background: #f3f4f6;
+  color: #000000;
+}
+
+body.theme-light .code-lang {
+  color: #6b7280;
+}
+
+body.theme-light .code-copy-btn {
+  color: #6b7280;
+}
+
+body.theme-light .code-copy-btn:hover {
+  color: #000000;
+}
+
+/* Chat window scrollbar - light mode */
+body.theme-light .chat-window {
+  scrollbar-color: #cbd5e0 transparent;
+}
+
+body.theme-light .chat-window::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+}

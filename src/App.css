@@ -1,9 +1,34 @@
-.app-layout {
+/* Dark Mode Styles */
+body.theme-dark .app-layout {
   display: flex;
   height: 100vh;
   width: 100vw;
-  background: #212121 ;
+  background: #212121;
   overflow: hidden;
+}
+
+/* Light Mode Styles */
+body.theme-light .app-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background: #f7f7f8;
+  overflow: hidden;
+}
+
+/* Auto Mode - follows system preference */
+body.theme-auto .app-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background: #212121;
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: light) {
+  body.theme-auto .app-layout {
+    background: #f7f7f8;
+  }
 }
 
 .main-area {
@@ -19,10 +44,4 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  
-}
-
-
-.input-box{
-  background: ;
 }

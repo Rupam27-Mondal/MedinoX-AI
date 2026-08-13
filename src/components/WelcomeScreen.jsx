@@ -11,7 +11,7 @@ export default function WelcomeScreen({ onSuggestion }) {
   return (
     <div className="welcome-screen">
       <div className="welcome-content">
-        <h1 className="welcome-title">What can I help with?</h1>
+        <h1 className="welcome-title">Welcome to MediNox-AI , How can I help you ?</h1>
 
         <div className="suggestions-grid">
           {SUGGESTIONS.map(s => (

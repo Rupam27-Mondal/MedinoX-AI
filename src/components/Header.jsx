@@ -1,9 +1,15 @@
-import { ChevronDown, Share, MoreHorizontal } from 'lucide-react';
+import { ChevronDown, Sun, Moon } from 'lucide-react';
 import './Header.css';
 
 const MODELS = ['GPT-4o', 'GPT-4o mini', 'GPT-4', 'GPT-3.5'];
 
-export default function Header({ selectedModel, onModelChange }) {
+export default function Header({ selectedModel, onModelChange, theme, onThemeChange }) {
+  const isLight = theme === 'light';
+
+  const toggleTheme = () => {
+    onThemeChange(isLight ? 'dark' : 'light');
+  };
+
   return (
     <header className="chat-header">
       <div className="model-selector-wrapper">
@@ -27,12 +33,13 @@ export default function Header({ selectedModel, onModelChange }) {
       </div>
 
       <div className="header-actions">
-        <button className="header-btn" title="Share">
-          <Share size={16} />
-          <span>Share</span>
-        </button>
-        <button className="header-icon-btn" title="More options">
-          <MoreHorizontal size={18} />
+        <button
+          className="theme-toggle-btn"
+          onClick={toggleTheme}
+          title={isLight ? 'Switch to Dark mode' : 'Switch to Light mode'}
+          aria-label={isLight ? 'Switch to Dark mode' : 'Switch to Light mode'}
+        >
+          {isLight ? <Moon size={17} /> : <Sun size={17} />}
         </button>
       </div>
     </header>

@@ -223,7 +223,7 @@ export default function ChatInput({ onSend, isLoading, onStop, selectedLanguage 
           <textarea
             ref={textareaRef}
             className="message-textarea"
-            placeholder="Message ChatGPT"
+            placeholder="Message MediNox"
             value={value}
             onChange={e => setValue(e.target.value)}
             onKeyDown={handleKeyDown}
@@ -358,7 +358,7 @@ export default function ChatInput({ onSend, isLoading, onStop, selectedLanguage 
       </div>
 
       <p className="disclaimer">
-        Our model-name can make mistakes. Consider checking important information.
+        MediNox can make mistakes. Consider checking important information.
         {selectedLanguage !== 'en' && (
           <span className="language-note"> • Language: {getSelectedLanguage().label}</span>
         )}
