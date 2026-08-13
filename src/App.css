@@ -1,0 +1,28 @@
+.app-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background: #212121 ;
+  overflow: hidden;
+}
+
+.main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  
+}
+
+
+.input-box{
+  background: ;
+}

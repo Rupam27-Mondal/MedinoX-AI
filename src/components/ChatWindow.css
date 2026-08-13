@@ -1,0 +1,22 @@
+.chat-window {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #3a3a3a transparent;
+  padding: 0 16px;
+}
+
+.chat-window::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-window::-webkit-scrollbar-thumb {
+  background: #3a3a3a;
+  border-radius: 4px;
+}
+
+.messages-list {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 24px 0 8px 0;
+}

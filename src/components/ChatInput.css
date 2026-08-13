@@ -1,0 +1,392 @@
+.chat-input-area {
+  padding: 12px 16px 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-container {
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+/* Attachments Display */
+.attachments-display {
+  background: #2f2f2f;
+  border: 1px solid #3a3a3a;
+  border-radius: 16px 16px 4px 4px;
+  padding: 12px 14px 8px;
+  margin-bottom: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.attachment-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #3a3a3a;
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-size: 12px;
+  color: #ececec;
+}
+
+.attachment-icon {
+  color: #8e8ea0;
+  display: flex;
+  align-items: center;
+}
+
+.attachment-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.attachment-name {
+  font-weight: 500;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.attachment-size {
+  color: #8e8ea0;
+  font-size: 11px;
+}
+
+.attachment-remove {
+  background: none;
+  border: none;
+  color: #8e8ea0;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.15s, color 0.15s;
+}
+
+.attachment-remove:hover {
+  background: #555;
+  color: #fff;
+}
+
+.input-box {
+  background: #2f2f2f;
+  border-radius: 16px;
+  border: 1px solid #3a3a3a;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 14px 10px;
+  transition: border-color 0.2s;
+}
+
+.attachments-display + .input-box {
+  border-radius: 4px 4px 16px 16px;
+  border-top: none;
+}
+
+.input-box:focus-within {
+  border-color: #555;
+}
+
+.message-textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ececec;
+  font-size: 15px;
+  font-family: inherit;
+  line-height: 1.6;
+  resize: none;
+  min-height: 24px;
+  max-height: 200px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #555 transparent;
+  box-sizing: border-box;
+}
+
+.message-textarea::placeholder {
+  color: #8e8ea0;
+}
+
+.message-textarea::-webkit-scrollbar {
+  width: 4px;
+}
+
+.message-textarea::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 4px;
+}
+
+.input-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.input-tools-left {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.input-tools-right {
+  display: flex;
+  align-items: center;
+}
+
+.tool-btn {
+  background: transparent;
+  border: none;
+  color: #8e8ea0;
+  cursor: pointer;
+  padding: 6px 7px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+  position: relative;
+}
+
+.tool-btn:hover:not(:disabled) {
+  background: #3a3a3a;
+  color: #ececec;
+}
+
+.tool-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Attachment Button */
+.attachment-btn {
+  gap: 2px;
+}
+
+.dropdown-arrow {
+  opacity: 0.7;
+  transition: transform 0.15s;
+}
+
+.attachment-btn:hover .dropdown-arrow {
+  opacity: 1;
+}
+
+/* Attachment Dropdown */
+.attachment-dropdown-container {
+  position: relative;
+}
+
+.attachment-dropdown {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background: #2f2f2f;
+  border: 1px solid #3a3a3a;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  padding: 8px;
+  margin-bottom: 8px;
+  min-width: 220px;
+  z-index: 1000;
+  animation: slideUp 0.15s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-item {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #ececec;
+  cursor: pointer;
+  padding: 10px 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background 0.15s;
+  text-align: left;
+}
+
+.dropdown-item:hover {
+  background: #3a3a3a;
+}
+
+.dropdown-item-icon {
+  color: #8e8ea0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  flex-shrink: 0;
+}
+
+.dropdown-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dropdown-item-label {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.dropdown-item-description {
+  font-size: 12px;
+  color: #8e8ea0;
+}
+
+.send-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, opacity 0.15s;
+  background: #676767;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.send-btn.active {
+  background: #fff;
+  color: #000;
+}
+
+.send-btn.active:hover {
+  background: #e0e0e0;
+}
+
+.send-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.stop-btn {
+  background: #fff;
+  color: #000;
+}
+
+.stop-btn:hover {
+  background: #e0e0e0;
+}
+
+/* Language Dropdown */
+.language-dropdown-container {
+  position: relative;
+}
+
+.language-btn {
+  gap: 2px;
+}
+
+.language-btn:hover .dropdown-arrow {
+  opacity: 1;
+}
+
+.language-indicator {
+  font-size: 14px;
+  margin-left: 4px;
+  margin-right: 2px;
+}
+
+.language-dropdown {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background: #2f2f2f;
+  border: 1px solid #3a3a3a;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  padding: 8px;
+  margin-bottom: 8px;
+  min-width: 240px;
+  z-index: 1000;
+  animation: slideUp 0.15s ease-out;
+}
+
+.language-flag {
+  font-size: 18px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.language-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.language-label {
+  font-weight: 500;
+  font-size: 14px;
+  color: #ececec;
+}
+
+.language-native {
+  font-size: 12px;
+  color: #8e8ea0;
+}
+
+.language-checkmark {
+  color: #19c37d;
+  font-weight: bold;
+  font-size: 14px;
+  width: 20px;
+  text-align: center;
+}
+
+.dropdown-item.selected {
+  background: rgba(25, 195, 125, 0.1);
+}
+
+.dropdown-item.selected:hover {
+  background: rgba(25, 195, 125, 0.15);
+}
+
+.disclaimer {
+  text-align: center;
+  font-size: 12px;
+  color: #8e8ea0;
+  margin: 10px 0 0 0;
+  line-height: 1.4;
+}
+
+.language-note {
+  color: #19c37d;
+  font-weight: 500;
+  margin-left: 4px;
+}

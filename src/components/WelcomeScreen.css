@@ -1,0 +1,79 @@
+.welcome-screen {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  overflow-y: auto;
+}
+
+.welcome-content {
+  max-width: 680px;
+  width: 100%;
+  text-align: center;
+}
+
+.welcome-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #ececec;
+  margin: 0 0 32px 0;
+}
+
+.suggestions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.suggestion-card {
+  background: #2f2f2f;
+  border: 1px solid #3a3a3a;
+  border-radius: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.suggestion-card:hover {
+  background: #383838;
+  border-color: #4a4a4a;
+}
+
+.suggestion-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.suggestion-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ececec;
+  margin: 0 0 3px 0;
+}
+
+.suggestion-desc {
+  font-size: 12px;
+  color: #8e8ea0;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+@media (max-width: 500px) {
+  .suggestions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .welcome-title {
+    font-size: 22px;
+  }
+}
